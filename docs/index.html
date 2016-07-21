@@ -1,0 +1,172 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Welcome to Travis docs builder’s documentation! &mdash; Travis docs builder 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="Travis docs builder 1.0 documentation" href="#" />
+    <link rel="next" title="API" href="api.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="welcome-to-travis-docs-builder-s-documentation">
+<h1>Welcome to Travis docs builder&#8217;s documentation!<a class="headerlink" href="#welcome-to-travis-docs-builder-s-documentation" title="Permalink to this headline">¶</a></h1>
+</div>
+<div class="section" id="travis-docs-builder">
+<h1>Travis docs builder<a class="headerlink" href="#travis-docs-builder" title="Permalink to this headline">¶</a></h1>
+<p>A tool for automatically building Sphinx docs on Travis CI, and deploying them
+to GitHub pages.</p>
+<p>This tool is still a work in progress, but once it works it&#8217;s going to be
+awesome.</p>
+<div class="section" id="usage-this-will-change">
+<h2>Usage (this will change)<a class="headerlink" href="#usage-this-will-change" title="Permalink to this headline">¶</a></h2>
+<p>Run</p>
+<div class="code highlight-default"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">travis_docs_builder</span>
+</pre></div>
+</div>
+<p>and enter your data. You will need your GitHub username and password, and the
+repo you want to build the docs for.</p>
+<p>That repo should already be setup with Travis. Additionally, you should enable
+GitHub pages for the repo. Create a <code class="docutils literal"><span class="pre">gh-pages</span></code> branch (ideally an empty one
+<strong>Note: if you do it on GitHub it will do it based on master</strong>). Go to
+<code class="docutils literal"><span class="pre">https://github.com/&lt;your</span> <span class="pre">repo&gt;/settings</span></code> and enable GitHub pages. <strong>Make
+sure to create a file called .nojekyll in the root of the gh-pages branch.</strong>
+You may also want to enable branch protection for the <code class="docutils literal"><span class="pre">gh-pages</span></code> branch and
+other branches, so that this script can&#8217;t accidentally screw you.</p>
+<p>Then add the stuff to your <code class="docutils literal"><span class="pre">.travis.yml</span></code>. The command above will tell you a
+secure key to add. You should also have something like</p>
+<div class="code yaml highlight-default"><div class="highlight"><pre><span></span><span class="n">language</span><span class="p">:</span> <span class="n">python</span>
+<span class="n">python</span><span class="p">:</span>
+  <span class="o">-</span> <span class="mf">3.5</span>
+
+<span class="n">sudo</span><span class="p">:</span> <span class="n">false</span>
+<span class="n">env</span><span class="p">:</span>
+  <span class="k">global</span><span class="p">:</span>
+    <span class="n">secure</span><span class="p">:</span> <span class="s2">&quot;&lt;your secure key from python -m travis_docs_builder here&gt;&quot;</span>
+
+<span class="n">script</span><span class="p">:</span>
+  <span class="o">-</span> <span class="n">pip</span> <span class="n">install</span> <span class="n">requests</span> <span class="n">cryptography</span> <span class="n">sphinx</span>
+  <span class="o">-</span> <span class="n">cd</span> <span class="n">docs</span>
+  <span class="o">-</span> <span class="n">make</span> <span class="n">html</span>
+  <span class="o">-</span> <span class="n">cd</span> <span class="o">..</span>
+  <span class="o">-</span> <span class="o">./</span><span class="n">travis_docs_builder</span><span class="o">.</span><span class="n">py</span> <span class="o">&lt;</span><span class="n">your</span> <span class="n">repo</span> <span class="n">name</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>in your <code class="docutils literal"><span class="pre">.travis.yml</span></code>. See <a class="reference external" href=".travis.yml">the one</a> in this repo for example.</p>
+<p><strong>Heads up:</strong> This script requires Python 3.5 or newer. Be sure to run it in a
+Python 3.5 or newer section of your build matrix. It should be in the same
+build in your build matrix as your docs build, as it reuses that.</p>
+<p>Another suggestion: Add</p>
+<div class="code highlight-default"><div class="highlight"><pre><span></span><span class="n">html</span><span class="p">:</span> <span class="n">SPHINXOPTS</span> <span class="o">+=</span> <span class="o">-</span><span class="n">W</span>
+</pre></div>
+</div>
+<p>to your Sphinx <code class="docutils literal"><span class="pre">Makefile</span></code>. This will make Sphinx error even if there are
+warnings, keeping your docs more accurate.</p>
+<p>Contents:</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="api.html">API</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="section" id="indices-and-tables">
+<h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></li>
+<li><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></li>
+<li><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></li>
+</ul>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="#">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Welcome to Travis docs builder&#8217;s documentation!</a></li>
+<li><a class="reference internal" href="#travis-docs-builder">Travis docs builder</a><ul>
+<li><a class="reference internal" href="#usage-this-will-change">Usage (this will change)</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#indices-and-tables">Indices and tables</a></li>
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="#">Documentation overview</a><ul>
+      <li>Next: <a href="api.html" title="next chapter">API</a></li>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/index.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2016, Aaron Meurer and Gil Forsyth.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4.5</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
+      
+      |
+      <a href="_sources/index.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
