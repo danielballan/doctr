@@ -56,13 +56,11 @@ awesome.</p>
 </div>
 <p>and enter your data. You will need your GitHub username and password, and the
 repo you want to build the docs for.</p>
-<p>That repo should already be setup with Travis. Additionally, you should enable
-GitHub pages for the repo. Create a <code class="docutils literal"><span class="pre">gh-pages</span></code> branch (ideally an empty one
-<strong>Note: if you do it on GitHub it will do it based on master</strong>). Go to
-<code class="docutils literal"><span class="pre">https://github.com/&lt;your</span> <span class="pre">repo&gt;/settings</span></code> and enable GitHub pages. <strong>Make
-sure to create a file called .nojekyll in the root of the gh-pages branch.</strong>
-You may also want to enable branch protection for the <code class="docutils literal"><span class="pre">gh-pages</span></code> branch and
-other branches, so that this script can&#8217;t accidentally screw you.</p>
+<p>That repo should already be setup with Travis. The script will create the
+<code class="docutils literal"><span class="pre">gh-pages</span></code> branch for you, but you will need to go to
+<code class="docutils literal"><span class="pre">https://github.com/&lt;your</span> <span class="pre">repo&gt;/settings</span></code> and enable GitHub pages. You may
+also want to enable branch protection for the <code class="docutils literal"><span class="pre">gh-pages</span></code> branch and other
+branches, so that this script can&#8217;t accidentally screw you.</p>
 <p>Then add the stuff to your <code class="docutils literal"><span class="pre">.travis.yml</span></code>. The command above will tell you a
 secure key to add. You should also have something like</p>
 <div class="code yaml highlight-default"><div class="highlight"><pre><span></span><span class="n">language</span><span class="p">:</span> <span class="n">python</span>
@@ -95,7 +93,11 @@ warnings, keeping your docs more accurate.</p>
 <p>Contents:</p>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="api.html">API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">API</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api.html#module-travis_docs_builder.local">Local</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#module-travis_docs_builder.travis">Travis</a></li>
+</ul>
+</li>
 </ul>
 </div>
 </div>

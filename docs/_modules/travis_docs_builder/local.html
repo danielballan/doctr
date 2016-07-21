@@ -57,13 +57,13 @@
 <span class="kn">from</span> <span class="nn">cryptography.hazmat.primitives</span> <span class="k">import</span> <span class="n">serialization</span>
 
 
-<div class="viewcode-block" id="encrypt_variable"><a class="viewcode-back" href="../../api.html#travis_docs_builder.encrypt_variable">[docs]</a><span class="k">def</span> <span class="nf">encrypt_variable</span><span class="p">(</span><span class="n">variable</span><span class="p">,</span> <span class="n">repo</span><span class="p">,</span> <span class="n">public_key</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="encrypt_variable"><a class="viewcode-back" href="../../api.html#travis_docs_builder.local.encrypt_variable">[docs]</a><span class="k">def</span> <span class="nf">encrypt_variable</span><span class="p">(</span><span class="n">variable</span><span class="p">,</span> <span class="n">repo</span><span class="p">,</span> <span class="n">public_key</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Encrypt an environment variable for repo for Travis</span>
+<span class="sd">    Encrypt an environment variable for ``repo`` for Travis</span>
 
-<span class="sd">    ``variable`` should be a bytes object.</span>
+<span class="sd">    ``variable`` should be a bytes object, of the form ``b&#39;ENV=value&#39;``.</span>
 
-<span class="sd">    ``repo`` should be like &#39;gforsyth/travis_docs_builder&#39;</span>
+<span class="sd">    ``repo`` should be like &#39;gforsyth/travis_docs_builder&#39;.</span>
 
 <span class="sd">    ``public_key`` should be a pem format public key, obtained from Travis if</span>
 <span class="sd">    not provided.</span>
@@ -91,7 +91,7 @@
 <span class="k">class</span> <span class="nc">AuthenticationFailed</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
     <span class="k">pass</span>
 
-<div class="viewcode-block" id="generate_GitHub_token"><a class="viewcode-back" href="../../api.html#travis_docs_builder.generate_GitHub_token">[docs]</a><span class="k">def</span> <span class="nf">generate_GitHub_token</span><span class="p">(</span><span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">OTP</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">note</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="generate_GitHub_token"><a class="viewcode-back" href="../../api.html#travis_docs_builder.local.generate_GitHub_token">[docs]</a><span class="k">def</span> <span class="nf">generate_GitHub_token</span><span class="p">(</span><span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">OTP</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">note</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Generate a GitHub token for pushing from Travis</span>
 
