@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>travis_docs_builder.local &mdash; Travis docs builder 1.0 documentation</title>
+    <title>doctr.local &mdash; Doctr 0+untagged.82.g75d0ce7 documentation</title>
     
     <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -14,7 +14,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../',
-        VERSION:     '1.0',
+        VERSION:     '0+untagged.82.g75d0ce7',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -23,7 +23,7 @@
     <script type="text/javascript" src="../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
-    <link rel="top" title="Travis docs builder 1.0 documentation" href="../../index.html" />
+    <link rel="top" title="Doctr 0+untagged.82.g75d0ce7 documentation" href="../../index.html" />
     <link rel="up" title="Module code" href="../index.html" />
    
   <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
@@ -39,7 +39,7 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <h1>Source code for travis_docs_builder.local</h1><div class="highlight"><pre>
+  <h1>Source code for doctr.local</h1><div class="highlight"><pre>
 <span></span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">The code that should be run locally</span>
 <span class="sd">&quot;&quot;&quot;</span>
@@ -57,13 +57,13 @@
 <span class="kn">from</span> <span class="nn">cryptography.hazmat.primitives</span> <span class="k">import</span> <span class="n">serialization</span>
 
 
-<div class="viewcode-block" id="encrypt_variable"><a class="viewcode-back" href="../../api.html#travis_docs_builder.local.encrypt_variable">[docs]</a><span class="k">def</span> <span class="nf">encrypt_variable</span><span class="p">(</span><span class="n">variable</span><span class="p">,</span> <span class="n">repo</span><span class="p">,</span> <span class="n">public_key</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="encrypt_variable"><a class="viewcode-back" href="../../api.html#doctr.local.encrypt_variable">[docs]</a><span class="k">def</span> <span class="nf">encrypt_variable</span><span class="p">(</span><span class="n">variable</span><span class="p">,</span> <span class="n">repo</span><span class="p">,</span> <span class="n">public_key</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Encrypt an environment variable for ``repo`` for Travis</span>
 
 <span class="sd">    ``variable`` should be a bytes object, of the form ``b&#39;ENV=value&#39;``.</span>
 
-<span class="sd">    ``repo`` should be like &#39;gforsyth/travis_docs_builder&#39;.</span>
+<span class="sd">    ``repo`` should be like &#39;gforsyth/doctr&#39;.</span>
 
 <span class="sd">    ``public_key`` should be a pem format public key, obtained from Travis if</span>
 <span class="sd">    not provided.</span>
@@ -91,7 +91,7 @@
 <span class="k">class</span> <span class="nc">AuthenticationFailed</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
     <span class="k">pass</span>
 
-<div class="viewcode-block" id="generate_GitHub_token"><a class="viewcode-back" href="../../api.html#travis_docs_builder.local.generate_GitHub_token">[docs]</a><span class="k">def</span> <span class="nf">generate_GitHub_token</span><span class="p">(</span><span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">OTP</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">note</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="generate_GitHub_token"><a class="viewcode-back" href="../../api.html#doctr.local.generate_GitHub_token">[docs]</a><span class="k">def</span> <span class="nf">generate_GitHub_token</span><span class="p">(</span><span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">OTP</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">note</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Generate a GitHub token for pushing from Travis</span>
 
@@ -102,7 +102,7 @@
 
 <span class="sd">    The token created here can be revoked at</span>
 <span class="sd">    https://github.com/settings/tokens. The default note is</span>
-<span class="sd">    &quot;travis_docs_builder token for pushing to gh-pages from Travis&quot;.</span>
+<span class="sd">    &quot;Doctr token for pushing to gh-pages from Travis&quot;.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">password</span><span class="p">:</span>
         <span class="n">password</span> <span class="o">=</span> <span class="n">getpass</span><span class="p">(</span><span class="s2">&quot;Enter the GitHub password for </span><span class="si">{username}</span><span class="s2">: &quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">username</span><span class="o">=</span><span class="n">username</span><span class="p">))</span>
@@ -115,11 +115,11 @@
     <span class="n">auth</span> <span class="o">=</span> <span class="n">HTTPBasicAuth</span><span class="p">(</span><span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">)</span>
     <span class="n">AUTH_URL</span> <span class="o">=</span> <span class="s2">&quot;https://api.github.com/authorizations&quot;</span>
 
-    <span class="n">note</span> <span class="o">=</span> <span class="n">note</span> <span class="ow">or</span> <span class="s2">&quot;travis_docs_builder token for pushing to gh-pages from Travis&quot;</span>
+    <span class="n">note</span> <span class="o">=</span> <span class="n">note</span> <span class="ow">or</span> <span class="s2">&quot;Doctr token for pushing to gh-pages from Travis&quot;</span>
     <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
         <span class="s2">&quot;scopes&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;public_repo&quot;</span><span class="p">],</span>
         <span class="s2">&quot;note&quot;</span><span class="p">:</span> <span class="n">note</span><span class="p">,</span>
-        <span class="s2">&quot;note_url&quot;</span><span class="p">:</span> <span class="s2">&quot;https://github.com/gforsyth/travis_docs_builder&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;note_url&quot;</span><span class="p">:</span> <span class="s2">&quot;https://github.com/gforsyth/doctr&quot;</span><span class="p">,</span>
         <span class="s2">&quot;fingerprint&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">uuid</span><span class="o">.</span><span class="n">uuid4</span><span class="p">()),</span>
     <span class="p">}</span>
     <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">AUTH_URL</span><span class="p">,</span> <span class="n">auth</span><span class="o">=</span><span class="n">auth</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">data</span><span class="p">))</span>

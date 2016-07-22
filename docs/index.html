@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Welcome to Travis docs builder’s documentation! &mdash; Travis docs builder 1.0 documentation</title>
+    <title>Welcome to Travis docs builder’s documentation! &mdash; Doctr 0+untagged.82.g75d0ce7 documentation</title>
     
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -14,7 +14,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
-        VERSION:     '1.0',
+        VERSION:     '0+untagged.82.g75d0ce7',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -23,7 +23,7 @@
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <link rel="top" title="Travis docs builder 1.0 documentation" href="#" />
+    <link rel="top" title="Doctr 0+untagged.82.g75d0ce7 documentation" href="#" />
     <link rel="next" title="API" href="api.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
@@ -51,7 +51,7 @@ awesome.</p>
 <div class="section" id="usage-this-will-change">
 <h2>Usage (this will change)<a class="headerlink" href="#usage-this-will-change" title="Permalink to this headline">¶</a></h2>
 <p>Run</p>
-<div class="code highlight-default"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">travis_docs_builder</span>
+<div class="code highlight-default"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">doctr</span>
 </pre></div>
 </div>
 <p>and enter your data. You will need your GitHub username and password, and the
@@ -70,14 +70,14 @@ secure key to add. You should also have something like</p>
 <span class="n">sudo</span><span class="p">:</span> <span class="n">false</span>
 <span class="n">env</span><span class="p">:</span>
   <span class="k">global</span><span class="p">:</span>
-    <span class="n">secure</span><span class="p">:</span> <span class="s2">&quot;&lt;your secure key from python -m travis_docs_builder here&gt;&quot;</span>
+    <span class="n">secure</span><span class="p">:</span> <span class="s2">&quot;&lt;your secure key from doctr here&gt;&quot;</span>
 
 <span class="n">script</span><span class="p">:</span>
   <span class="o">-</span> <span class="n">pip</span> <span class="n">install</span> <span class="n">requests</span> <span class="n">cryptography</span> <span class="n">sphinx</span>
   <span class="o">-</span> <span class="n">cd</span> <span class="n">docs</span>
   <span class="o">-</span> <span class="n">make</span> <span class="n">html</span>
   <span class="o">-</span> <span class="n">cd</span> <span class="o">..</span>
-  <span class="o">-</span> <span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">travis_docs_builder</span> <span class="o">&lt;</span><span class="n">your</span> <span class="n">repo</span> <span class="n">name</span><span class="o">&gt;</span>
+  <span class="o">-</span> <span class="n">doctr</span> <span class="o">&lt;</span><span class="n">your</span> <span class="n">repo</span> <span class="n">name</span><span class="o">&gt;</span>
 </pre></div>
 </div>
 <p>in your <code class="docutils literal"><span class="pre">.travis.yml</span></code>. See <a class="reference external" href=".travis.yml">the one</a> in this repo for example.</p>
@@ -94,8 +94,8 @@ warnings, keeping your docs more accurate.</p>
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="api.html">API</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="api.html#module-travis_docs_builder.local">Local</a></li>
-<li class="toctree-l2"><a class="reference internal" href="api.html#module-travis_docs_builder.travis">Travis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#module-doctr.local">Local</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#module-doctr.travis">Travis</a></li>
 </ul>
 </li>
 </ul>
