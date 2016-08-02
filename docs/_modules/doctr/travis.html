@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>doctr.travis &mdash; Doctr 0+untagged.165.g347c0a0 documentation</title>
+    <title>doctr.travis &mdash; Doctr 0+untagged.165.g9612716 documentation</title>
     
     <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -14,7 +14,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../',
-        VERSION:     '0+untagged.165.g347c0a0',
+        VERSION:     '0+untagged.165.g9612716',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -23,7 +23,7 @@
     <script type="text/javascript" src="../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
-    <link rel="top" title="Doctr 0+untagged.165.g347c0a0 documentation" href="../../index.html" />
+    <link rel="top" title="Doctr 0+untagged.165.g9612716 documentation" href="../../index.html" />
     <link rel="up" title="Module code" href="../index.html" />
    
   <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
@@ -190,14 +190,14 @@
     <span class="n">TRAVIS_BRANCH</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;TRAVIS_BRANCH&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
     <span class="n">TRAVIS_PULL_REQUEST</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;TRAVIS_PULL_REQUEST&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
 
-<span class="c1">#    if TRAVIS_BRANCH != &quot;master&quot;:</span>
-<span class="c1">#        print(&quot;The docs are only pushed to gh-pages from master&quot;, file=sys.stderr)</span>
-<span class="c1">#        print(&quot;This is the {TRAVIS_BRANCH} branch&quot;.format(TRAVIS_BRANCH=TRAVIS_BRANCH), file=sys.stderr)</span>
-<span class="c1">#        return False</span>
-<span class="c1">#</span>
-<span class="c1">#    if TRAVIS_PULL_REQUEST != &quot;false&quot;:</span>
-<span class="c1">#        print(&quot;The website and docs are not pushed to gh-pages on pull requests&quot;, file=sys.stderr)</span>
-<span class="c1">#        return False</span>
+    <span class="k">if</span> <span class="n">TRAVIS_BRANCH</span> <span class="o">!=</span> <span class="s2">&quot;master&quot;</span><span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="s2">&quot;The docs are only pushed to gh-pages from master&quot;</span><span class="p">,</span> <span class="nb">file</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="s2">&quot;This is the {TRAVIS_BRANCH} branch&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">TRAVIS_BRANCH</span><span class="o">=</span><span class="n">TRAVIS_BRANCH</span><span class="p">),</span> <span class="nb">file</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">False</span>
+
+    <span class="k">if</span> <span class="n">TRAVIS_PULL_REQUEST</span> <span class="o">!=</span> <span class="s2">&quot;false&quot;</span><span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="s2">&quot;The website and docs are not pushed to gh-pages on pull requests&quot;</span><span class="p">,</span> <span class="nb">file</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">False</span>
 
     <span class="k">print</span><span class="p">(</span><span class="s2">&quot;Setting git attributes&quot;</span><span class="p">)</span>
     <span class="c1"># Should we add some user.email?</span>
