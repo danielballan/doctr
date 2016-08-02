@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>doctr.travis &mdash; Doctr 0+untagged.131.g13f91cd documentation</title>
+    <title>doctr.travis &mdash; Doctr 0+untagged.163.g7208c87 documentation</title>
     
     <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -14,7 +14,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../',
-        VERSION:     '0+untagged.131.g13f91cd',
+        VERSION:     '0+untagged.163.g7208c87',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -23,7 +23,7 @@
     <script type="text/javascript" src="../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
-    <link rel="top" title="Doctr 0+untagged.131.g13f91cd documentation" href="../../index.html" />
+    <link rel="top" title="Doctr 0+untagged.163.g7208c87 documentation" href="../../index.html" />
     <link rel="up" title="Module code" href="../index.html" />
    
   <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
@@ -76,9 +76,6 @@
     <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="nb">file</span><span class="p">[:</span><span class="o">-</span><span class="mi">4</span><span class="p">],</span> <span class="s1">&#39;wb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
         <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">decrypted_file</span><span class="p">)</span>
 
-    <span class="n">run</span><span class="p">([</span><span class="s1">&#39;ls&#39;</span><span class="p">])</span>
-    <span class="n">run</span><span class="p">([</span><span class="s1">&#39;pwd&#39;</span><span class="p">])</span>
-
     <span class="n">os</span><span class="o">.</span><span class="n">chmod</span><span class="p">(</span><span class="nb">file</span><span class="p">[:</span><span class="o">-</span><span class="mi">4</span><span class="p">],</span> <span class="mi">0</span><span class="n">o600</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="setup_deploy_key"><a class="viewcode-back" href="../../api.html#doctr.travis.setup_deploy_key">[docs]</a><span class="k">def</span> <span class="nf">setup_deploy_key</span><span class="p">():</span>
@@ -101,12 +98,23 @@
     <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">expanduser</span><span class="p">(</span><span class="s2">&quot;~/.ssh&quot;</span><span class="p">),</span> <span class="n">exist_ok</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
     <span class="n">os</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="s2">&quot;github_deploy_key&quot;</span><span class="p">,</span> <span class="n">key_path</span><span class="p">)</span>
 
-    <span class="n">run</span><span class="p">([</span><span class="s1">&#39;ls&#39;</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">expanduser</span><span class="p">(</span><span class="s1">&#39;~/.ssh&#39;</span><span class="p">)])</span>
-    <span class="n">run</span><span class="p">([</span><span class="s1">&#39;pwd&#39;</span><span class="p">])</span>
     <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">expanduser</span><span class="p">(</span><span class="s2">&quot;~/.ssh/config&quot;</span><span class="p">),</span> <span class="s1">&#39;a&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
         <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;Host github.com&quot;</span>
                 <span class="s1">&#39;  IdentityFile &quot;</span><span class="si">%s</span><span class="s1">&quot;&#39;</span>
                 <span class="s2">&quot;  LogLevel ERROR</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">key_path</span><span class="p">)</span>
+
+    <span class="c1"># start ssh-agent and add key to it</span>
+    <span class="c1"># info from SSH agent has to be put into the environment</span>
+    <span class="n">agent_info</span> <span class="o">=</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">check_output</span><span class="p">([</span><span class="s1">&#39;ssh-agent&#39;</span><span class="p">,</span> <span class="s1">&#39;-s&#39;</span><span class="p">])</span>
+    <span class="n">agent_info</span> <span class="o">=</span> <span class="n">agent_info</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span>
+    <span class="n">agent_info</span> <span class="o">=</span> <span class="n">agent_info</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+
+    <span class="n">AUTH_SOCK</span> <span class="o">=</span> <span class="n">agent_info</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;=&#39;</span><span class="p">)[</span><span class="mi">1</span><span class="p">][:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">AGENT_PID</span> <span class="o">=</span> <span class="n">agent_info</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;=&#39;</span><span class="p">)[</span><span class="mi">1</span><span class="p">][:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+    <span class="n">os</span><span class="o">.</span><span class="n">putenv</span><span class="p">(</span><span class="s1">&#39;SSH_AUTH_SOCK&#39;</span><span class="p">,</span> <span class="n">AUTH_SOCK</span><span class="p">)</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">putenv</span><span class="p">(</span><span class="s1">&#39;SSH_AGENT_PID&#39;</span><span class="p">,</span> <span class="n">AGENT_PID</span><span class="p">)</span>
+
     <span class="n">run</span><span class="p">([</span><span class="s1">&#39;ssh-add&#39;</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">expanduser</span><span class="p">(</span><span class="s1">&#39;~/.ssh/github_deploy_key&#39;</span><span class="p">)])</span></div>
 
 <span class="c1"># XXX: Do this in a way that is streaming</span>
