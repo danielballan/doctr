@@ -1,0 +1,8 @@
+cryptography
+pyflakes
+pytest
+pyyaml
+requests
+sphinx
+sphinx-issues
+sphinxcontrib-autoprogram

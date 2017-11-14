@@ -223,6 +223,9 @@ def process_args(parser):
 def on_travis():
     return os.environ.get("TRAVIS_JOB_NUMBER", '')
 
+def on_circle():
+    return os.environ.get("CIRCLE_CI", "")
+
 def deploy(args, parser):
     if not args.force and not on_travis():
         parser.error("doctr does not appear to be running on Travis. Use "
